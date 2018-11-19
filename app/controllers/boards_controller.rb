@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :logged_in_user
+  before_action :correct_board,  only: [:show]
 
   def index
     @user = User.find(params[:id])
@@ -21,12 +23,17 @@ class BoardsController < ApplicationController
     @newMap = Map.new(:board_id => params[:id])
 
     @photo = Photo.all
-   
+
     @hash = Gmaps4rails.build_markers(@map) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
       marker.infowindow place.address
     end
+  end
+
+  def search
+    @users = User.all
+    @other = User.search(params[:search])
   end
 
   def create
@@ -38,9 +45,31 @@ class BoardsController < ApplicationController
       redirect_to board_path(@board.user_id)
     end
   end
+
   def createManner
     @manner = Manner.new(params[:manner].permit(:board_id, :entry))
     @manner.save
     redirect_to boards_show_path(params[:manner]['board_id'])
+  end
+
+  # beforeアクション
+  # ログイン済みユーザーかどうか確認
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_path
+    end
+  end
+
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(board_path(current_user.id)) unless current_user?(@user)
+  end
+
+  # ログインしているユーザーのボードかどうか確認
+  def correct_board
+    @board = Board.find(params[:id])
+    redirect_to(board_path(current_user.id)) unless current_board?(@board)
   end
 end

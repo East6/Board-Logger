@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy', as: 'logout'
 
-  get  'users/new',    to: 'users#new',    as: 'user_new'
-  post 'users/create', to: 'users#create', as: 'user_create'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
+  get 'boards/search', to: 'boards#search', as: 'boards_search'
   get 'boards/:id',  to: 'boards#index', as: 'board'
   get 'boards/show/:id', to: 'boards#show', as: 'boards_show'
   post 'boards/create', to: 'boards#create'
@@ -17,4 +21,11 @@ Rails.application.routes.draw do
   post 'boards/createManner', to: 'boards#createManner', as: 'boards_createManner'
   post 'photos/create',  to: 'photos#create',  as: 'photo_create'
   post 'waves/mood', to: 'wave#createmood', as: 'mood_create'
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
 end
