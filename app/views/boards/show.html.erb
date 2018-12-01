@@ -23,12 +23,17 @@
         });
       </script>
 
+      <p><button onclick="geoFindMe()">Show my location</button></p>
+      <div id="out"></div>
+      lat = ;
+      lng = ;
+      <%= link_to  'Google mapへGo' , 'https://maps.google.co.jp/maps?q=${lat},${lng}&z=20' %>
+
       <% if @user == current_user %>
         <%= render 'shared/can_edit_board' %>
       <% else %>
         <%= render 'shared/cannot_edit_board' %>
       <% end %>
-
 
       <p>
         <%= link_to "戻る", root_path %>
