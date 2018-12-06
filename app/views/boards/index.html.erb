@@ -10,21 +10,16 @@
     </div>
 
     <div class="box11">
-
-      <% if access?(@user) or @user  == current_user %>
-
-
-      <!-- Sign in, Log in に成功したらでるメッセージ -->
-      <p><% flash[:success] %></p>
-
+      <% if @user  == current_user %>
+        <!-- Sign in, Log in に成功したらでるメッセージ -->
+        <p><% flash[:success] %></p>
 
         <div class = "showPC"><!--PCの画面とスマホの画面を分けたいから-->
-        <h1> <%= @user.name %> さんのページ </h1>
-        <% if @user == current_user %>
-          <h1>サーフポイントの作成</h1>
-        <% end %>
+          <h1> <%= @user.name %> さんのページ </h1>
+          <% if @user == current_user %>
+            <h1>サーフポイントの作成</h1>
+          <% end %>
         </div>
-
 
         <% if @user == current_user %>
           <%= form_for(@newBoard, :url => {:action => 'create'}) do |f| %>
@@ -34,62 +29,35 @@
               <%= f.submit "サーフポイントの作成", class: "btn btn-primary mb-2 btn-lg" %>
             </div>
           <% end %>
-
         <% end %>
 
-
         <ul class="list-group" style="max-width: 300px;">
-        <!--<ul class="list-group"> -->
+          <!--<ul class="list-group"> -->
           <% @boards.each do |boards| %>
-          <li class="list-group-item">
-            <% if @user == current_user %>
-              <%= link_to boards.location, boards_show_path(boards.id), style: "margin-left: 15px" %>
-              <%= form_for(boards, url: boards_search_path, html: {method: "get"}) do %>
-                <%= hidden_field_tag :board_id, boards.id %>
-                <%= submit_tag '共有するユーザの選択へ' %>
-              <% end %>
-              <%= link_to "削除する", board_path(boards.id), method: :delete, class: "btn btn-danger mb-2 btn-sm", data: {confirm: "本当に削除しますか？"}%>
-            <% else %>
-              <% @followers.each do |f| %>
-                <% if f.board_id == boards.id %>
-                    <%= link_to boards.location, boards_show_path(boards.id), style: "margin-left: 15px" %>
+            <li class="list-group-item">
+              <% if @user == current_user %>
+                <%= link_to boards.location, boards_show_path(boards.id), style: "margin-left: 15px" %>
+                <%= form_for(boards, url: boards_search_path, html: {method: "get"}) do %>
+                  <%= hidden_field_tag :board_id, boards.id %>
+                  <%= submit_tag '共有するユーザの選択へ' %>
                 <% end %>
+                <%= link_to "削除する", boards, method: :delete, class: "btn btn-danger mb-2 btn-sm", data: {confirm: "本当に削除しますか？"}%>
               <% end %>
-            <% end %>
-          </li>
+            </li>
           <% end %>
         </ul>
 
-        <% if @user == current_user and Middle.find_by(user_id: params[:id]) %>
-          <h1 style="padding-left: 100px">共有されているボード</h1>
-            <ul class="list-group" style="max-width: 300px;">
-              <% @middle.each do |middle| %>
-                <li class="list-group-item">
-                  <%= link_to middle.board.location, boards_show_path(middle.board.id) %>
-                </li>
-              <% end %>
-            </ul>
+        <% if @user == current_user and Middle.find_by(user_id: current_user.id) %>
+          <h1 style="padding-left: 100px">共有されているポイント</h1>
+          <ul class="list-group" style="max-width: 300px;">
+            <% @middle.each do |middle| %>
+              <li class="list-group-item">
+                <%= link_to middle.board.location, boards_show_path(middle.board.id) %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
-
-      <% else %>
-
-        <div class = "showPC"><!--PCの画面とスマホの画面を分けたいから-->
-          <h1> <%= @user.name %> さんのページ </h1>
-        </div>
-
-        <div class = "showPC"><!--PCの画面とスマホの画面を分けたいから-->
-          <h1> 許可がありません... </h1>
-        </div>
-
-        <!-- ログアウトする。home画面に戻る -->
-        <ul class="list-group" style="max-width: 220px;">
-          <li class="list-group-item">
-            <%= link_to "ホームに戻る", board_path(current_user.id) %>
-          </li>
-        </ul>
-
       <% end %>
-
     </div>
   </body>
 </html>

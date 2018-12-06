@@ -15,7 +15,7 @@
             <%= user.name %>
             <% if middle = Middle.find_by(user_id: user.id, board_id: @board_id) %><!-- 共有してたら．．． -->
               <%= link_to "共有解除", middle, method: :delete, class: "btn btn-danger" %>
-            <% else %><!-- 共有していなかったら．．． -->
+              <% else %><!-- 共有していなかったら．．． -->
               <%= form_for @middle do |f|%>
                 <%= hidden_field_tag :user_id, user.id %>
                 <%= hidden_field_tag :board_id,  @board_id %>
@@ -29,7 +29,6 @@
       <p>
         <%= link_to "ホームに戻る", root_path %>
       </p>
-
     </div>
   </body>
 </html>

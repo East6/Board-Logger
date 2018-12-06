@@ -3,11 +3,10 @@ class BoardsController < ApplicationController
   before_action :correct_board,  only: [:show]
 
   def index
-    @user = User.find(params[:id])
-    @users = @user.followers
-    @boards = Board.where(user_id: params[:id])
+    @user = User.find(current_user.id)
+    @boards = Board.where(user_id: current_user.id)
     @middle = Middle.where(user_id: current_user.id)
-    @newBoard = Board.new(user_id: params[:id])
+    @newBoard = Board.new(user_id: current_user.id)
   end
 
   def show
@@ -39,31 +38,26 @@ class BoardsController < ApplicationController
     @other = User.search(params[:search], current_user.name)
 
     @board_id = params[:board_id]
-    @boards = Board.where(user_id: params[:id])
     @middle = Middle.new
-
   end
 
   def create
-    @board = Board.new(params[:board].permit(:location, :user_id))
+    @board = Board.new(board_params)
     if @board.save
-      redirect_to board_path(@board.user_id)
+      redirect_to board_path
     else
-      p @board.errors.full_messages
-      redirect_to board_path(@board.user_id)
+      redirect_to board_path
     end
   end
 
-
-# ボード削除用変数設定
+  # ボード削除用変数設定
   def destroy
-    @board = Board.find(params[:id])
+    @board = Board.find(params[:format])
     @board.destroy
     flash[:success] = "Board deleted"
 
-    redirect_to board_path(@board.user_id)
+    redirect_to board_path
   end
-
 
   # beforeアクション
   # ログイン済みユーザーかどうか確認
@@ -77,7 +71,12 @@ class BoardsController < ApplicationController
   # ログインしているユーザーのボードかどうか確認
   def correct_board
     @board = Board.find(params[:id])
-    redirect_to(board_path(current_user.id)) unless current_board?(@board) || accessboard(current_user)
+    redirect_to board_path unless current_board?(@board) || accessboard(current_user)
   end
 
+  private
+
+  def board_params
+    params[:board].permit(:location, :user_id)
+  end
 end
