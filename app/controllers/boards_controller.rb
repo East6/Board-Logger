@@ -71,7 +71,9 @@ class BoardsController < ApplicationController
   # ログインしているユーザーのボードかどうか確認
   def correct_board
     @board = Board.find(params[:id])
-    redirect_to board_path unless current_board?(@board) || accessboard(current_user)
+    unless current_board?(@board) || accessboard(current_user)
+      render file: Rails.root.join('public/404.html'), status: 404, layout: false, content_type: 'text/html'
+    end
   end
 
   private

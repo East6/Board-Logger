@@ -49,11 +49,6 @@
         <% @photo.where(manner_id: manner.id).each do |d| %>
           <img src=<%= "data:image/jpeg;base64, #{d.image}" %> />
         <% end %>
-        <%= form_for Photo.new(:manner_id => manner.id), :url => photo_create_path do |f| %>
-          <%= f.file_field :image %>
-          <%= f.hidden_field :manner_id %>
-          <%= f.submit "写真を投稿する!", class: "btn btn-primary mb-2" %>
-        <% end %>
       </td>
     </tr>
   <% end %>
