@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_103430) do
+ActiveRecord::Schema.define(version: 2018_12_06_093501) do
 
   create_table "boards", force: :cascade do |t|
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "manners", force: :cascade do |t|
@@ -58,6 +65,13 @@ ActiveRecord::Schema.define(version: 2018_11_25_103430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["manner_id"], name: "index_photos_on_manner_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
