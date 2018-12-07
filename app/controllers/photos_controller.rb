@@ -12,10 +12,15 @@ class PhotosController < ApplicationController
     redirect_to boards_show_path(@photo.manner.board.id)
   end
 
+  def destroy
+    @photo = Photo.find(params[:id])
+    @photo.delete
+    redirect_to board_path
+  end
+
   private
 
   def photo_params
     params.require(:photo).permit(:image, :manner_id)
   end
-
 end

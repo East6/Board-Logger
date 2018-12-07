@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   resources :users
   resources :manners, only: [:create]
   resources :middles, only: [:create, :destroy]
+  resources :wave, only: [:create, :destroy]
+  resources :moods, only: [:create, :destroy]
+  resources :photos, only: [:create, :destroy]
 end
