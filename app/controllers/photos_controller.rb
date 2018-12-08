@@ -9,13 +9,13 @@ class PhotosController < ApplicationController
         @photo.save
     end
 
-    redirect_to boards_show_path(@photo.manner.board.id)
+    redirect_to boards_show_path(@photo.manner.board_id)
   end
 
   def destroy
     @photo = Photo.find(params[:id])
     @photo.delete
-    redirect_to board_path
+    redirect_to boards_show_path(@photo.manner.board_id)
   end
 
   private

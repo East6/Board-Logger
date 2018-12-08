@@ -9,7 +9,7 @@ class WaveController < ApplicationController
   def destroy
     @wave = Wave.find(params[:id])
     @wave.delete
-    redirect_to board_path
+    redirect_to boards_show_path(@wave.board_id)
   end
 
   private

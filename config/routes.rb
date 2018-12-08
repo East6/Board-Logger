@@ -11,15 +11,13 @@ Rails.application.routes.draw do
   get 'boards/show/:id', to: 'boards#show', as: 'boards_show'
   resources :boards, only: [:create, :destroy]
 
-  post 'waves/create', to: 'wave#create', as: 'wave_create'
+  post 'waves/create', to: 'wave#create', as: 'waves'
+  delete 'waves/:id',  to: 'wave#destroy', as: 'wafe'
   post 'gmaps/create', to: 'gmap#create', as: 'gmap_create'
-  post 'photos/create',  to: 'photos#create',  as: 'photo_create'
-  post 'waves/mood', to: 'wave#createmood', as: 'mood_create'
 
   resources :users
-  resources :manners, only: [:create]
+  resources :manners, only: [:create, :destroy]
   resources :middles, only: [:create, :destroy]
-  resources :wave, only: [:create, :destroy]
   resources :moods, only: [:create, :destroy]
   resources :photos, only: [:create, :destroy]
 end
