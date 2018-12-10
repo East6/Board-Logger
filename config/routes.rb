@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'gp_ss/create'
   root 'home#index'
 
   get    '/login',   to: 'sessions#new',     as: 'login'
