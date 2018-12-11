@@ -10,28 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_032550) do
+ActiveRecord::Schema.define(version: 2018_12_10_035102) do
 
   create_table "boards", force: :cascade do |t|
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-  end
-
-  create_table "gps", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "board_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "manners", force: :cascade do |t|

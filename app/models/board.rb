@@ -1,6 +1,6 @@
 class Board < ApplicationRecord
   has_one :mood
-  has_one :gps
+  has_one :position
   has_many :map, dependent: :destroy
   has_many :manner, dependent: :destroy
   has_many :wave, dependent: :destroy
