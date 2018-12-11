@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get 'boards/show/:id', to: 'boards#show', as: 'boards_show'
   resources :boards, only: [:create, :destroy]
 
-  post 'waves/create', to: 'wave#create', as: 'waves'
-  delete 'waves/:id',  to: 'wave#destroy', as: 'wafe'
   post 'gmaps/create', to: 'gmap#create', as: 'gmap_create'
 
   resources :users
@@ -20,4 +18,5 @@ Rails.application.routes.draw do
   resources :middles, only: [:create, :destroy]
   resources :moods, only: [:create, :destroy]
   resources :photos, only: [:create, :destroy]
+  resources :waves, only: [:create, :destroy]
 end
