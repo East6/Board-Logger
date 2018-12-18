@@ -10,6 +10,8 @@
 
       <h1 style="margin-left: 20px;"><%= @board.location %></h1>
 
+      <%= link_to "GoogleMapへGo","https://www.google.com/maps/dir/?api=1&destination=" + @board.latitude.to_s + "," + @board.longitude.to_s,:target=>["_blank"] %>
+
       <!-- google mapを表示する場所> -->
       <div id="gmap" style="width: 100%; height: 300px;"></div>
 
