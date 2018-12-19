@@ -24,6 +24,21 @@ window.onpageshow = function geoFindMe() {
 
   function error() {
     output.innerHTML = "Unable to retrieve your location";
+    var err_msg = "";
+    switch(error.code)
+    {
+      case 1:
+        err_msg = "位置情報の利用が許可されていません";
+        break;
+      case 2:
+        err_msg = "デバイスの位置が判定できません";
+        break;
+      case 3:
+        err_msg = "タイムアウトしました";
+        break;
+    }
+    document.getElementById("out").innerHTML = err_msg;
+    //デバック用 → document.getElementById("out").innerHTML = error.message;
   }
 debugger;
   output.innerHTML = "<p>Locating…</p>";
