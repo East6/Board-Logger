@@ -10,7 +10,13 @@
 
       <h1 style="margin-left: 20px;"><%= @board.location %></h1>
 
-      <%= link_to "GoogleMapへGo","https://www.google.com/maps/dir/?api=1&destination=" + @board.latitude.to_s + "," + @board.longitude.to_s,:target=>["_blank"] %>
+      <!--<%= link_to "GoogleMapへGo","https://www.google.com/maps/dir/?api=1&destination=" + @board.latitude.to_s + "," + @board.longitude.to_s,:target=>["_blank"] %>-->
+
+      <!--https://www.google.com/maps/dir/?api=1&origin=26.253320499999997,127.76594870000001&destination=26.253320499999997,127.76594870000001-->
+      <%= link_to "GoogleMapへGo","https://www.google.com/maps/dir/?api=1&origin="+ <id = "latitude"> +","+ <id = "longitude"> + "&destination=" + @board.latitude.to_s + "," + @board.longitude.to_s,:target=>["_blank"] %>
+
+      <%=確かめ%>
+
 
       <!-- google mapを表示する場所> -->
       <div id="gmap" style="width: 100%; height: 300px;"></div>

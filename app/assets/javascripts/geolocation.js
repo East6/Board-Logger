@@ -8,8 +8,8 @@ window.onpageshow = function geoFindMe() {
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
-    document.getElementById("latitude").value = position.coords.latitude;
-    document.getElementById("longitude").value = position.coords.longitude;
+    document.getElementById("latitude").value = latitude;
+    document.getElementById("longitude").value = longitude;
 
     //ここで呼び出したい。
 
