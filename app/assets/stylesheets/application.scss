@@ -51,10 +51,14 @@ body{
   //　画面サイズが767px以下の場合読み込む
 
   /* header */
+  .container-fluid{//これに合わせて，親タグの，headerも変化するっぽい(すげー)
+    margin-top:2vh;
+    //margin-bottom:2vh;　　　//.dropdown-toggleで，margin-bottomを取っているから
+  }
   #logo {
     color: #fff;
     font-weight: bold; //太文字にする
-    font-size:40px;
+    font-size:7vw;
     margin-left:0px;
     padding-left:0px;
   }
@@ -62,11 +66,21 @@ body{
     color: #fff;
     text-decoration: none;
   }
+  .nav.navbar-nav.navbar-right{//headerの右側に表示されるのに対して
+    font-size:4vw;
+  }
+  .dropdown-menu{//メニューボタンを押した時にでるやつ に対して
+    font-size:4vw;
+  }
+  .dropdown-toggle{//メニューボタンを押した時にドロップダウンがでる位置を調整(ヘッダーの調整の大きさにも影響)
+    margin-bottom:4vw;//だいたいこの大きさが 「(2vh+7vw+2vh) - (2vh+4vw)」 を目指して
+    //margin-bottom:sec((2vh+7vw+2vh) - (2vh+4vw));//secでvh,vwの計算できない
+  }
 
 
   body{
     //zoom: 300%;//全体的にズームをし、大きくした
-    padding-top: 50px;
+    padding-top: 12%;//header 分(12%くらい)だけ，他を下に表示する
   }
   .box11{
     padding: 0.5em 1em;
