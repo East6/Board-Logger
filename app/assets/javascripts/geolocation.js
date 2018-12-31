@@ -21,7 +21,7 @@ window.onpageshow = function geoFindMe() {
       var des_latitude = document.getElementsByClassName("des_latitude");
       var des_longitude = document.getElementsByClassName("des_longitude");
 
-      Link[0].innerHTML = "<a href='https://www.google.com/maps/dir/?api=1&origin=" +latitude+ "," +longitude + "&destination=" +des_latitude[0].textContent+ ',' + des_longitude[0].textContent+  "'" + " target='_blank' class='btn btn-success　route'> ルート</a>"
+      Link[0].innerHTML = "<a href='https://www.google.com/maps/dir/?api=1&origin=" +latitude+ "," +longitude + "&destination=" +des_latitude[0].textContent+ ',' + des_longitude[0].textContent+  "'" + " target='_blank' class='btn btn-success route'> ルート</a>"
       //ここから上18:00分
     }
   }
