@@ -71,6 +71,10 @@ body{
   }
   .dropdown-menu{//メニューボタンを押した時にでるやつ に対して
     font-size:4vw;
+    li{
+      margin-top:2vw;
+      margin-bottom:2vw;
+    }
   }
   .dropdown-toggle{//メニューボタンを押した時にドロップダウンがでる位置を調整(ヘッダーの調整の大きさにも影響)
     margin-bottom:4vw;//だいたいこの大きさが 「(2vh+7vw+2vh) - (2vh+4vw)」 を目指して
