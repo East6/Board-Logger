@@ -47,7 +47,6 @@
       }
       //ボタンのところ
       .btn{
-        margin-top: 1vh;
         margin-bottom: 1vh;
         font-size:5vw;
         padding:2vw;//ボタンの大きさを変える
@@ -73,7 +72,13 @@
   .error{
     ul{
       padding-left: calc(10px + 1em);//application.scssのbox11のleftのpattind,margin の分だけ
+      li{
+        font-size:4vw;
+      }
     }
+  }
+  .alert.alert-danger{
+    font-size:4vw;
   }
 
 }

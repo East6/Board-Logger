@@ -1,6 +1,6 @@
 <div class="container-fluid"> <!--Bootstrapのグリッドシステムの対象範囲-->
   <div class="box11">
-    <h1><%= @board.location %></h1>
+    <h1 class="PointName"><%= @board.location %></h1>
 
     <!--ここから下18:00分-->
     <div class="des_latitude" hidden><%= @board.latitude.to_s%></div>
@@ -8,11 +8,11 @@
     <div class = "link"></div>
     <!--ここから上18:00分-->
 
-    <h3>波情報<%= link_to "入力", wave_form_path(@board.id), class: "btn btn-info", style: "margin-left: 144px" %></h3>
+    <h3 class="text_WaveInfo">波情報<%= link_to "入力", wave_form_path(@board.id), class: "btn btn-info input_WaveInfo", style: "margin-left: 144px" %></h3>
     <!-- 波情報を出力するためのテーブル -->
     <% @wave.each do |wave| %>
-      <table class="table table-striped">
-        <caption align="left"><h3><%= wave.created_at.strftime("%Y年%-m月%-d日") %><%= link_to "削除", wave, method: :delete, class: "btn btn-danger mb-2 btn-sm", style: "margin-left: 70px;", data: {confirm: "本当に削除しますか？"}%></h3></caption>
+      <table class="table table-striped show_WaveInfo">
+        <caption align="left"><h3><%= wave.created_at.strftime("%Y年%-m月%-d日") %><%= link_to "削除", wave, method: :delete, class: "btn btn-danger mb-2 btn-sm delete_TableWaveInfo", style: "margin-left: 70px;", data: {confirm: "本当に削除しますか？"}%></h3></caption>
         <tbody>
           <tr>
             <th>サイズ</th>
@@ -51,9 +51,9 @@
     <% end %>
     <%= paginate @wave %>
 
-    <h3>サーフポイントの雰囲気<%= link_to "入力", mood_form_path(@board.id), class: "btn btn-info", style: "margin-left: 10px;" %></h3>
+    <h3>サーフポイントの雰囲気<%= link_to "入力", mood_form_path(@board.id), class: "btn btn-info Input_Mood", style: "margin-left: 10px;" %></h3>
     <!-- サーフポイントの雰囲気を出力するためのテーブル -->
-    <table class="table table-striped">
+    <table class="table table-striped show_Mood">
       <% if @mood.present? %>　　<!-- undefin method　'mood' nil:NillClassエラーを解消するため。nilであった場合に実行しないようにする。-->
         <tr>
           <td><%= @mood.mood%></td>
@@ -62,9 +62,9 @@
       <% end %>
     </table>
 
-    <h3>エントリーの仕方<%= link_to "入力", entry_form_path(@board.id), class: "btn btn-info", style: "margin-left: 60px;" %></h3>
+    <h3>エントリーの仕方<%= link_to "入力", entry_form_path(@board.id), class: "btn btn-info Input_Entory", style: "margin-left: 60px;" %></h3>
     <!-- エントリを出力するためのテーブル -->
-    <table class="table table-striped">
+    <table class="table table-striped show_Entory">
       <% @manner.each do |manner| %>
         <tr>
           <td><%= manner.entry %></td>
@@ -72,7 +72,7 @@
         </tr>
       <% end %>
     </table>
-    <p>
+    <p class="back_PointList">
       <%= link_to "ポイントリストへ戻る", board_path ,data: {"turbolinks" => false}%>
     </p>
   </div>

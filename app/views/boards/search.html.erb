@@ -4,7 +4,7 @@
 </head>
   <body>
     <div class="box11">
-      <h1>ユーザーの検索</h1>
+      <h1 class="show_SearchUser">ユーザーの検索</h1>
       <!-- ユーザーの検索フォーム -->
       <%= form_tag(boards_search_path,:method => 'get') do %>
       <div class="form-inline">
@@ -12,29 +12,31 @@
           <%= text_field_tag :search, "", class: "form-control" %>
         </div>
         <%= hidden_field_tag :board_id,  @board_id %>
-        <%= submit_tag '検索', :name => nil, class: "btn btn-primary mb-2" %>
+        <%= submit_tag '検索', :name => nil, class: "btn btn-primary mb-2 search" %>
       </div>
       <% end %>
 
       <% unless @other.nil? %>
         <% @other.each do |user| %>
           <li class="list-group-item">
-            <%= user.name %>
+            <p class="CanShare_User">
+              <%= user.name %>
+            </p>
             <% if middle = Middle.find_by(user_id: user.id, board_id: @board_id) %><!-- 共有してたら．．． -->
               <p>
-                <%= link_to "共有解除", middle, method: :delete, class: "btn btn-danger" %>
+                <%= link_to "共有解除", middle, method: :delete, class: "btn btn-danger chancel_Share" %>
               </p>
             <% else %><!-- 共有していなかったら．．． -->
               <%= form_for @middle do |f|%>
                 <%= hidden_field_tag :user_id, user.id %>
                 <%= hidden_field_tag :board_id,  @board_id %>
-                <%= f.submit "共有する", class: "btn btn-primary" %>
+                <%= f.submit "共有する", class: "btn btn-primary do_Share" %>
               <% end %>
             <% end %>
           </li>
         <% end %>
       <% end %>
-      <p>
+      <p class="back_PointList">
         <%= link_to "ポイントリストへ戻る", board_path %>
       </p>
     </div>
