@@ -38,30 +38,47 @@
   body{
       //h1タグ(ログインページ)を操作
       h1{
-          font-size:60px;
+          font-size:8vw;
           text-align: center
       }
       //f.labelの文字の大きさ指定
       label{
-          font-size:40px;
+          font-size:5vw;
       }
       //ボタンのところ
       .btn{
-        margin-bottom: 10px;
-        font-size:40px;
+        margin-bottom: 1vh;
+        font-size:5vw;
+        padding:2vw;//ボタンの大きさを変える
       }
   }
 
   .form-control {//テキストエリアのcss を設定
-    font-size:40px;
-    margin-bottom: 5px;
+    font-size:6vw;
+    margin-bottom: 2vh;
+  }
+  //フォーム大きさの設定
+  input[type=text]{
+    height:auto;
+  }
+  input[type=email]{
+    height:auto;
+  }
+  input[type=password]{
+    height:auto;
   }
 
   //エラーメッセージのところ
   .error{
     ul{
       padding-left: calc(10px + 1em);//application.scssのbox11のleftのpattind,margin の分だけ
+      li{
+        font-size:4vw;
+      }
     }
+  }
+  .alert.alert-danger{
+    font-size:4vw;
   }
 
 }
