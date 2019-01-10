@@ -10,17 +10,17 @@
     <div class="box11">
       <% if @user  == current_user %>
         <div class = "showPC"><!--PCの画面とスマホの画面を分けたいから-->
-        <h1> <%= @user.name %> さんのページ </h1>
+        <h1 class="show_UserName"> <%= @user.name %> さんのページ </h1>
         </div>
         <% if @user == current_user %>
           <%= form_for @newBoard do |f| %>
             <div class="form-inline">
               <%= f.label "サーフポイントの作成", class:"sr-only" %>
-              <%= f.text_field :location, class: "form-control mb-2 mr-sm-2", style: "width: 80%; font-size: 30px;", placeholder: "サーフポイントの作成" %>
+              <%= f.text_field :location, class: "form-control mb-2 mr-sm-2", style: "width: 80%; font-size: 6vw;", placeholder: "サーフポイントの作成" %>
               <%= f.hidden_field :user_id %>
               <%= f.hidden_field :latitude, class:"latitude" %>
               <%= f.hidden_field :longitude, class:"longitude" %>
-              <%= f.submit "+", class: "btn btn-primary mb-2" %>
+              <%= f.submit "+", class: "btn btn-primary mb-2 plus" %>
               <div id="out"></div>
             </div>
           <% end %>
@@ -32,15 +32,15 @@
               <%= link_to boards.location, boards_show_path(boards.id),data: {"turbolinks" => false}, class: "btn btn-link", style: "width: 80%;" %>
               <%= form_for(boards, url: boards_search_path, html: {method: "get"}) do %>
                 <%= hidden_field_tag :board_id, boards.id %>
-                <%= submit_tag '共有', class: "btn btn-info" %>
-                <%= link_to "削除", board_path(boards.id), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除しますか？"}%>
+                <%= submit_tag '共有', class: "btn btn-info share" %>
+                <%= link_to "削除", board_path(boards.id), method: :delete, class: "btn btn-danger cancel", data: {confirm: "本当に削除しますか？"}%>
               <% end %>
             <% end %>
           </li>
           <% end %>
         </ul>
         <% if @user == current_user and Middle.find_by(user_id: current_user.id) %>
-          <h1>共有されているボード</h1>
+          <h1 class="show_ShareBoard">共有されているボード</h1>
             <ul class="list-group" style="max-width: 300px;">
               <% @middle.reverse_each do |middle| %>
                 <li class="list-group-item">
