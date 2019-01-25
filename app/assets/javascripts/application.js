@@ -14,11 +14,13 @@
 //= require activestorage
 //= require underscore
 //= require gmaps/google
-//= require turbolinks
 //= require_tree .
 
-//headerでドロッブダウン機能を有効にするために
+//下の順番重要 (javascriptをturbolinkでも動かすために)
 //= require jquery
+//= require jquery.turbolinks
+//= require turbolinks
+
 //= require bootstrap
 function getCSRFtoken(){
   return $("meta[name=csrf-token]").attr("content");
