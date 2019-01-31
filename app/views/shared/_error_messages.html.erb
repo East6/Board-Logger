@@ -5,23 +5,9 @@
     </div>
     <div class ="error">
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <%if msg =="Name translation missing: ja.activerecord.errors.models.user.attributes.name.blank" %>
-          <li>ユーザーネームを入力してください</li>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-        <%if msg =="Name translation missing: ja.activerecord.errors.models.user.attributes.name.taken" %>
-          <li>このユーザーネームはすでに使われています</li>
-        <% end %>
-        <%if msg =="Password translation missing: ja.activerecord.errors.models.user.attributes.password.blank" %>
-          <li>パスワードを入力してください</li>
-        <% end %>
-        <%if msg =="Password confirmation translation missing: ja.activerecord.errors.models.user.attributes.password_confirmation.confirmation" %>
-          <li>パスワードが一致していません</li>
-        <% end %>
-        <%if msg =="Password translation missing: ja.activerecord.errors.models.user.attributes.password.too_short" %>
-          <li>パスワードは6文字以上にしてください</li>
-        <% end %>
-      <% end %>
       </ul>
     </div>
   </div>
